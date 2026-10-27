@@ -1,0 +1,1247 @@
+{
+"tests/test_auth_contract.py::test_places_requires_candidate_key": [
+"negative"
+],
+"tests/test_auth_contract.py::test_invalid_candidate_key_rejected": [
+"negative"
+],
+"tests/test_auth_contract.py::test_rider_routes_require_token[GET-/v1/me]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_rider_routes_require_token[GET-/v1/wallet/transactions]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_rider_routes_require_token[GET-/v1/trips]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_rider_routes_reject_bad_token[GET-/v1/me]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_rider_routes_reject_bad_token[GET-/v1/wallet/transactions]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_rider_routes_reject_bad_token[GET-/v1/trips]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_driver_token_cannot_use_rider_routes[GET-/v1/me]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_driver_token_cannot_use_rider_routes[GET-/v1/wallet/transactions]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_driver_token_cannot_use_rider_routes[GET-/v1/trips]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_rider_token_cannot_use_driver_routes[GET-/v1/driver/trips/available]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_driver_routes_require_token": [
+"negative"
+],
+"tests/test_auth_contract.py::test_error_envelope_shape": [
+"negative"
+],
+"tests/test_auth_contract.py::test_starting_balances[nakato-25000]": [
+"positive"
+],
+"tests/test_auth_contract.py::test_starting_balances[okello-3000]": [
+"positive"
+],
+"tests/test_auth_contract.py::test_okello_phone": [
+"positive"
+],
+"tests/test_auth_contract.py::test_reset_restores_balances": [
+"positive",
+"state"
+],
+"tests/test_auth_contract.py::test_places_search_finds_ntinda": [
+"positive"
+],
+"tests/test_auth_contract.py::test_places_search_case_insensitive": [
+"positive"
+],
+"tests/test_auth_contract.py::test_places_no_match_is_empty_list_not_error": [
+"positive"
+],
+"tests/test_auth_contract.py::test_places_without_q_lists_places": [
+"positive"
+],
+"tests/test_auth_contract.py::test_places_coordinates_are_in_kampala_area": [
+"positive"
+],
+"tests/test_auth_contract.py::test_places_hostile_queries_do_not_5xx[' OR 1=1 --]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_places_hostile_queries_do_not_5xx[<script>alert(1)</script>]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_places_hostile_queries_do_not_5xx[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_places_hostile_queries_do_not_5xx[%00]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_places_hostile_queries_do_not_5xx[ntinda%]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_places_hostile_queries_do_not_5xx[\\u202eevil]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[not-json-/v1/fare-estimates]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[not-json-/v1/trips]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[not-json-/v1/wallet/top-ups]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[not-json-/v1/trips/trp_X/rating]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[not-json-/v1/support/chat]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[array-/v1/fare-estimates]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[array-/v1/trips]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[array-/v1/wallet/top-ups]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[array-/v1/trips/trp_X/rating]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[array-/v1/support/chat]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[null-/v1/fare-estimates]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[null-/v1/trips]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[null-/v1/wallet/top-ups]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[null-/v1/trips/trp_X/rating]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[null-/v1/support/chat]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[truncated-/v1/fare-estimates]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[truncated-/v1/trips]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[truncated-/v1/wallet/top-ups]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[truncated-/v1/trips/trp_X/rating]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[truncated-/v1/support/chat]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[string-/v1/fare-estimates]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[string-/v1/trips]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[string-/v1/wallet/top-ups]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[string-/v1/trips/trp_X/rating]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[string-/v1/support/chat]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[number-/v1/fare-estimates]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[number-/v1/trips]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[number-/v1/wallet/top-ups]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[number-/v1/trips/trp_X/rating]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[number-/v1/support/chat]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[deep-nesting-/v1/fare-estimates]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[deep-nesting-/v1/trips]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[deep-nesting-/v1/wallet/top-ups]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[deep-nesting-/v1/trips/trp_X/rating]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[deep-nesting-/v1/support/chat]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[binary-/v1/fare-estimates]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[binary-/v1/trips]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[binary-/v1/wallet/top-ups]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[binary-/v1/trips/trp_X/rating]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_malformed_body_is_client_error[binary-/v1/support/chat]": [
+"negative"
+],
+"tests/test_auth_contract.py::test_nairobi_constant_sanity": [
+"positive"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[GET /v1/me-no-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[GET /v1/me-bad-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/wallet/top-ups-no-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/wallet/top-ups-bad-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[GET /v1/wallet/transactions-no-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[GET /v1/wallet/transactions-bad-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/fare-estimates-no-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/fare-estimates-bad-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/trips-no-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/trips-bad-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[GET /v1/trips-no-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[GET /v1/trips-bad-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[GET /v1/trips/{trip_id}-no-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[GET /v1/trips/{trip_id}-bad-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/trips/{trip_id}/cancel-no-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/trips/{trip_id}/cancel-bad-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/trips/{trip_id}/rating-no-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/trips/{trip_id}/rating-bad-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[GET /v1/driver/trips/available-no-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[GET /v1/driver/trips/available-bad-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/driver/trips/{trip_id}/accept-no-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/driver/trips/{trip_id}/accept-bad-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/driver/trips/{trip_id}/arrive-no-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/driver/trips/{trip_id}/arrive-bad-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/driver/trips/{trip_id}/start-no-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/driver/trips/{trip_id}/start-bad-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/driver/trips/{trip_id}/complete-no-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/driver/trips/{trip_id}/complete-bad-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/support/chat-no-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_token_operation_rejects_missing_or_bad_token[POST /v1/support/chat-bad-token]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_operation_rejects_missing_candidate_key[GET /v1/places]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_operation_rejects_missing_candidate_key[GET /v1/me]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_operation_rejects_missing_candidate_key[POST /v1/wallet/top-ups]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_operation_rejects_missing_candidate_key[GET /v1/wallet/transactions]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_operation_rejects_missing_candidate_key[POST /v1/fare-estimates]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_operation_rejects_missing_candidate_key[POST /v1/trips]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_operation_rejects_missing_candidate_key[GET /v1/trips]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_operation_rejects_missing_candidate_key[GET /v1/trips/{trip_id}]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_operation_rejects_missing_candidate_key[POST /v1/trips/{trip_id}/cancel]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_operation_rejects_missing_candidate_key[POST /v1/trips/{trip_id}/rating]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_operation_rejects_missing_candidate_key[GET /v1/driver/trips/available]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_operation_rejects_missing_candidate_key[POST /v1/driver/trips/{trip_id}/accept]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_operation_rejects_missing_candidate_key[POST /v1/driver/trips/{trip_id}/arrive]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_operation_rejects_missing_candidate_key[POST /v1/driver/trips/{trip_id}/start]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_operation_rejects_missing_candidate_key[POST /v1/driver/trips/{trip_id}/complete]": [
+"negative"
+],
+"tests/test_auth_matrix.py::test_every_operation_rejects_missing_candidate_key[POST /v1/support/chat]": [
+"negative"
+],
+"tests/test_concurrency.py::test_two_drivers_accept_same_trip_exactly_one_wins": [
+"concurrency",
+"state"
+],
+"tests/test_concurrency.py::test_same_estimate_booked_in_parallel_creates_one_trip": [
+"concurrency",
+"state"
+],
+"tests/test_concurrency.py::test_same_idempotency_key_booked_in_parallel_creates_one_trip": [
+"concurrency",
+"state"
+],
+"tests/test_concurrency.py::test_parallel_complete_charges_wallet_once": [
+"concurrency",
+"state"
+],
+"tests/test_concurrency.py::test_cancel_and_accept_race_leaves_consistent_state": [
+"concurrency",
+"state"
+],
+"tests/test_concurrency.py::test_two_wallet_bookings_cannot_overdraw_on_completion": [
+"boundary",
+"concurrency",
+"negative",
+"spec_gap",
+"state"
+],
+"tests/test_driver_and_flows.py::test_full_wallet_journey_book_accept_complete_rate": [
+"positive",
+"state"
+],
+"tests/test_driver_and_flows.py::test_full_car_journey_with_car_driver": [
+"positive",
+"state"
+],
+"tests/test_driver_and_flows.py::test_send_journey_with_boda_driver": [
+"positive",
+"state"
+],
+"tests/test_driver_and_flows.py::test_available_trips_filtered_by_service": [
+"positive"
+],
+"tests/test_driver_and_flows.py::test_cancelled_and_accepted_trips_not_available": [
+"state"
+],
+"tests/test_driver_and_flows.py::test_service_mismatch[mugisha-boda]": [
+"negative"
+],
+"tests/test_driver_and_flows.py::test_service_mismatch[mugisha-send]": [
+"negative"
+],
+"tests/test_driver_and_flows.py::test_service_mismatch[ssemanda-car]": [
+"negative"
+],
+"tests/test_driver_and_flows.py::test_service_mismatch[achieng-car]": [
+"negative"
+],
+"tests/test_driver_and_flows.py::test_second_driver_cannot_take_accepted_trip": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_driver_cannot_accept_cancelled_trip": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_driver_busy_with_active_trip": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_driver_free_again_after_completion": [
+"positive",
+"state"
+],
+"tests/test_driver_and_flows.py::test_accept_is_idempotent_or_conflicts_cleanly": [
+"state"
+],
+"tests/test_driver_and_flows.py::test_unknown_trip_404[accept]": [
+"negative"
+],
+"tests/test_driver_and_flows.py::test_unknown_trip_404[arrive]": [
+"negative"
+],
+"tests/test_driver_and_flows.py::test_unknown_trip_404[start]": [
+"negative"
+],
+"tests/test_driver_and_flows.py::test_unknown_trip_404[complete]": [
+"negative"
+],
+"tests/test_driver_and_flows.py::test_invalid_transitions[accept-start]": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_invalid_transitions[accept-complete]": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_invalid_transitions[arrive-arrive]": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_invalid_transitions[arrive-complete]": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_invalid_transitions[start-arrive]": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_invalid_transitions[start-start]": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_invalid_transitions[complete-arrive]": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_invalid_transitions[complete-start]": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_invalid_transitions[complete-complete]": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_double_complete_charges_once": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_non_assigned_driver_cannot_progress_trip[arrive]": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_non_assigned_driver_cannot_progress_trip[start]": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_non_assigned_driver_cannot_progress_trip[complete]": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_driver_cannot_progress_unaccepted_trip[arrive]": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_driver_cannot_progress_unaccepted_trip[start]": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_driver_cannot_progress_unaccepted_trip[complete]": [
+"negative",
+"state"
+],
+"tests/test_driver_and_flows.py::test_rider_cannot_call_driver_endpoints": [
+"negative"
+],
+"tests/test_estimates.py::test_estimate_happy_path_shape": [
+"positive"
+],
+"tests/test_estimates.py::test_estimate_valid_for_five_minutes": [
+"positive"
+],
+"tests/test_estimates.py::test_distance_is_plausible_vs_straight_line": [
+"positive"
+],
+"tests/test_estimates.py::test_estimate_is_deterministic": [
+"positive"
+],
+"tests/test_estimates.py::test_boda_and_send_round_to_nearest_100[boda]": [
+"positive"
+],
+"tests/test_estimates.py::test_boda_and_send_round_to_nearest_100[send]": [
+"positive"
+],
+"tests/test_estimates.py::test_car_estimate_works": [
+"positive"
+],
+"tests/test_estimates.py::test_longer_trip_never_cheaper": [
+"positive"
+],
+"tests/test_estimates.py::test_reverse_route_similar_distance": [
+"positive"
+],
+"tests/test_estimates.py::test_safe20_is_twenty_percent_off": [
+"positive"
+],
+"tests/test_estimates.py::test_boda2000_takes_2000_off_boda": [
+"positive"
+],
+"tests/test_estimates.py::test_sendfree_takes_4000_off_send": [
+"positive"
+],
+"tests/test_estimates.py::test_promo_not_applicable_to_other_service[BODA2000-car]": [
+"negative"
+],
+"tests/test_estimates.py::test_promo_not_applicable_to_other_service[BODA2000-send]": [
+"negative"
+],
+"tests/test_estimates.py::test_promo_not_applicable_to_other_service[SENDFREE-boda]": [
+"negative"
+],
+"tests/test_estimates.py::test_promo_not_applicable_to_other_service[SENDFREE-car]": [
+"negative"
+],
+"tests/test_estimates.py::test_unknown_promo_rejected[NOPE]": [
+"negative"
+],
+"tests/test_estimates.py::test_unknown_promo_rejected[SAFE21]": [
+"negative"
+],
+"tests/test_estimates.py::test_unknown_promo_rejected[SAFE20 ]": [
+"negative"
+],
+"tests/test_estimates.py::test_unknown_promo_rejected[SAFE200]": [
+"negative"
+],
+"tests/test_estimates.py::test_unknown_promo_rejected[' OR 1=1]": [
+"negative"
+],
+"tests/test_estimates.py::test_fare_never_negative_on_very_short_trip[BODA2000-boda]": [
+"boundary",
+"positive"
+],
+"tests/test_estimates.py::test_fare_never_negative_on_very_short_trip[SENDFREE-send]": [
+"boundary",
+"positive"
+],
+"tests/test_estimates.py::test_fare_never_negative_on_very_short_trip[SAFE20-boda]": [
+"boundary",
+"positive"
+],
+"tests/test_estimates.py::test_fare_never_negative_on_very_short_trip[SAFE20-car]": [
+"boundary",
+"positive"
+],
+"tests/test_estimates.py::test_lowercase_promo_never_5xx": [
+"negative"
+],
+"tests/test_estimates.py::test_missing_required_field[pickup]": [
+"negative"
+],
+"tests/test_estimates.py::test_missing_required_field[dropoff]": [
+"negative"
+],
+"tests/test_estimates.py::test_missing_required_field[service_type]": [
+"negative"
+],
+"tests/test_estimates.py::test_invalid_point[pickup-lat91]": [
+"boundary",
+"negative"
+],
+"tests/test_estimates.py::test_invalid_point[pickup-lat-91]": [
+"boundary",
+"negative"
+],
+"tests/test_estimates.py::test_invalid_point[pickup-lng181]": [
+"boundary",
+"negative"
+],
+"tests/test_estimates.py::test_invalid_point[pickup-lng-181]": [
+"boundary",
+"negative"
+],
+"tests/test_estimates.py::test_invalid_point[pickup-lat-string]": [
+"negative"
+],
+"tests/test_estimates.py::test_invalid_point[pickup-no-lng]": [
+"negative"
+],
+"tests/test_estimates.py::test_invalid_point[pickup-label121]": [
+"boundary",
+"negative"
+],
+"tests/test_estimates.py::test_invalid_point[pickup-lat-null]": [
+"negative"
+],
+"tests/test_estimates.py::test_invalid_point[dropoff-lat91]": [
+"boundary",
+"negative"
+],
+"tests/test_estimates.py::test_invalid_point[dropoff-lat-91]": [
+"boundary",
+"negative"
+],
+"tests/test_estimates.py::test_invalid_point[dropoff-lng181]": [
+"boundary",
+"negative"
+],
+"tests/test_estimates.py::test_invalid_point[dropoff-lng-181]": [
+"boundary",
+"negative"
+],
+"tests/test_estimates.py::test_invalid_point[dropoff-lat-string]": [
+"negative"
+],
+"tests/test_estimates.py::test_invalid_point[dropoff-no-lng]": [
+"negative"
+],
+"tests/test_estimates.py::test_invalid_point[dropoff-label121]": [
+"boundary",
+"negative"
+],
+"tests/test_estimates.py::test_invalid_point[dropoff-lat-null]": [
+"negative"
+],
+"tests/test_estimates.py::test_invalid_service_type[bus]": [
+"negative"
+],
+"tests/test_estimates.py::test_invalid_service_type[BODA]": [
+"negative"
+],
+"tests/test_estimates.py::test_invalid_service_type[]": [
+"negative"
+],
+"tests/test_estimates.py::test_invalid_service_type[None]": [
+"negative"
+],
+"tests/test_estimates.py::test_invalid_service_type[1]": [
+"negative"
+],
+"tests/test_estimates.py::test_same_location_rejected": [
+"negative"
+],
+"tests/test_estimates.py::test_same_location_threshold[50m]": [
+"boundary",
+"negative",
+"spec_gap"
+],
+"tests/test_estimates.py::test_same_location_threshold[100m]": [
+"boundary",
+"positive",
+"spec_gap"
+],
+"tests/test_estimates.py::test_same_location_threshold[400m]": [
+"boundary",
+"positive",
+"spec_gap"
+],
+"tests/test_estimates.py::test_pickup_outside_service_area[nairobi]": [
+"negative"
+],
+"tests/test_estimates.py::test_pickup_outside_service_area[null-island]": [
+"negative"
+],
+"tests/test_estimates.py::test_pickup_outside_service_area[london]": [
+"negative"
+],
+"tests/test_estimates.py::test_estimate_requires_rider_auth": [
+"negative"
+],
+"tests/test_estimates.py::test_expired_estimate_cannot_be_booked": [
+"boundary",
+"negative",
+"skip",
+"slow",
+"state"
+],
+"tests/test_support_contract.py::test_chat_response_shape": [
+"positive"
+],
+"tests/test_support_contract.py::test_chat_conversation_id_is_stable_across_turns": [
+"positive",
+"state"
+],
+"tests/test_support_contract.py::test_chat_message_length_limits[1-char]": [
+"boundary",
+"positive"
+],
+"tests/test_support_contract.py::test_chat_message_length_limits[1000-chars]": [
+"boundary",
+"positive"
+],
+"tests/test_support_contract.py::test_chat_message_length_limits[empty]": [
+"boundary",
+"negative"
+],
+"tests/test_support_contract.py::test_chat_message_length_limits[1001-chars]": [
+"boundary",
+"negative"
+],
+"tests/test_support_contract.py::test_chat_message_wrong_type[None]": [
+"negative"
+],
+"tests/test_support_contract.py::test_chat_message_wrong_type[5]": [
+"negative"
+],
+"tests/test_support_contract.py::test_chat_message_wrong_type[message2]": [
+"negative"
+],
+"tests/test_support_contract.py::test_chat_message_wrong_type[message3]": [
+"negative"
+],
+"tests/test_support_contract.py::test_chat_missing_message": [
+"negative"
+],
+"tests/test_support_contract.py::test_chat_unknown_trip_404": [
+"negative"
+],
+"tests/test_support_contract.py::test_chat_other_riders_trip_is_404": [
+"negative"
+],
+"tests/test_support_contract.py::test_chat_requires_auth": [
+"negative"
+],
+"tests/test_support_contract.py::test_chat_refund_request_does_not_change_wallet": [
+"positive",
+"state"
+],
+"tests/test_trips.py::test_book_cash_trip": [
+"positive"
+],
+"tests/test_trips.py::test_estimate_is_single_use": [
+"negative",
+"state"
+],
+"tests/test_trips.py::test_booking_replay_returns_first_trip": [
+"positive",
+"state"
+],
+"tests/test_trips.py::test_unknown_estimate_404": [
+"negative"
+],
+"tests/test_trips.py::test_cannot_book_another_riders_estimate": [
+"negative",
+"state"
+],
+"tests/test_trips.py::test_booking_validation[no-est]": [
+"negative"
+],
+"tests/test_trips.py::test_booking_validation[no-method]": [
+"negative"
+],
+"tests/test_trips.py::test_booking_validation[bad-method]": [
+"negative"
+],
+"tests/test_trips.py::test_booking_validation[est-int]": [
+"negative"
+],
+"tests/test_trips.py::test_notes_length[200-True]": [
+"boundary",
+"positive"
+],
+"tests/test_trips.py::test_notes_length[201-False]": [
+"boundary",
+"negative"
+],
+"tests/test_trips.py::test_wallet_not_charged_at_booking_but_on_completion": [
+"positive",
+"state"
+],
+"tests/test_trips.py::test_wallet_charge_is_discounted_fare": [
+"positive",
+"state"
+],
+"tests/test_trips.py::test_ledger_has_one_trip_charge_and_reconciles": [
+"positive",
+"state"
+],
+"tests/test_trips.py::test_cash_trip_does_not_touch_wallet": [
+"positive",
+"state"
+],
+"tests/test_trips.py::test_wallet_booking_insufficient_balance": [
+"negative"
+],
+"tests/test_trips.py::test_failed_wallet_booking_does_not_burn_estimate": [
+"inferred",
+"negative",
+"state"
+],
+"tests/test_trips.py::test_wallet_balance_boundary[-1-402]": [
+"boundary",
+"negative"
+],
+"tests/test_trips.py::test_wallet_balance_boundary[0-201]": [
+"boundary",
+"positive"
+],
+"tests/test_trips.py::test_wallet_balance_boundary[1-201]": [
+"boundary",
+"positive"
+],
+"tests/test_trips.py::test_cancel_requested_trip": [
+"positive",
+"state"
+],
+"tests/test_trips.py::test_cancel_without_body": [
+"positive"
+],
+"tests/test_trips.py::test_cancel_after_accept_or_arrive_allowed_and_frees_driver[accept]": [
+"positive",
+"state"
+],
+"tests/test_trips.py::test_cancel_after_accept_or_arrive_allowed_and_frees_driver[arrive]": [
+"positive",
+"state"
+],
+"tests/test_trips.py::test_cancel_twice": [
+"negative",
+"state"
+],
+"tests/test_trips.py::test_cancel_in_progress": [
+"negative",
+"state"
+],
+"tests/test_trips.py::test_cancel_completed": [
+"negative",
+"state"
+],
+"tests/test_trips.py::test_cannot_cancel_someone_elses_trip": [
+"negative"
+],
+"tests/test_trips.py::test_cancel_reason_length": [
+"boundary",
+"negative"
+],
+"tests/test_trips.py::test_cancel_unknown_trip_404": [
+"negative"
+],
+"tests/test_trips.py::test_driver_token_cannot_cancel_rider_trip": [
+"negative"
+],
+"tests/test_trips.py::test_cancel_reason_wrong_type[int]": [
+"negative"
+],
+"tests/test_trips.py::test_cancel_reason_wrong_type[list]": [
+"negative"
+],
+"tests/test_trips.py::test_cancel_reason_wrong_type[object]": [
+"negative"
+],
+"tests/test_trips.py::test_other_rider_cannot_cancel_accepted_trip": [
+"negative",
+"state"
+],
+"tests/test_trips.py::test_get_trip_isolation": [
+"negative"
+],
+"tests/test_trips.py::test_list_only_own_trips": [
+"positive"
+],
+"tests/test_trips.py::test_list_pagination": [
+"positive"
+],
+"tests/test_trips.py::test_list_default_page_size_is_10": [
+"boundary",
+"positive"
+],
+"tests/test_trips.py::test_list_page_past_end_is_empty": [
+"boundary"
+],
+"tests/test_trips.py::test_list_status_filter": [
+"positive",
+"state"
+],
+"tests/test_trips.py::test_list_invalid_params[{'page': 0}]": [
+"boundary",
+"negative"
+],
+"tests/test_trips.py::test_list_invalid_params[{'page': -1}]": [
+"negative"
+],
+"tests/test_trips.py::test_list_invalid_params[{'page_size': 0}]": [
+"boundary",
+"negative"
+],
+"tests/test_trips.py::test_list_invalid_params[{'page_size': 51}]": [
+"boundary",
+"negative"
+],
+"tests/test_trips.py::test_list_invalid_params[{'page': 'abc'}]": [
+"negative"
+],
+"tests/test_trips.py::test_list_invalid_params[{'page_size': 'x'}]": [
+"negative"
+],
+"tests/test_trips.py::test_list_invalid_params[{'status': 'bogus'}]": [
+"negative"
+],
+"tests/test_trips.py::test_list_invalid_params[{'status': 'REQUESTED'}]": [
+"negative"
+],
+"tests/test_trips.py::test_list_invalid_params[{'page': 1.5}]": [
+"negative"
+],
+"tests/test_trips.py::test_list_invalid_params[{'page_size': -5}]": [
+"negative"
+],
+"tests/test_trips.py::test_list_trips_driver_token_rejected": [
+"negative"
+],
+"tests/test_trips.py::test_list_other_riders_trips_not_visible_with_filters": [
+"negative"
+],
+"tests/test_trips.py::test_list_page_size_50_allowed": [
+"boundary",
+"positive"
+],
+"tests/test_trips.py::test_schedule_valid_returned_in_utc": [
+"positive"
+],
+"tests/test_trips.py::test_schedule_window[delta0-False]": [
+"boundary",
+"negative"
+],
+"tests/test_trips.py::test_schedule_window[delta1-False]": [
+"boundary",
+"negative"
+],
+"tests/test_trips.py::test_schedule_window[delta2-False]": [
+"boundary",
+"negative"
+],
+"tests/test_trips.py::test_schedule_window[delta3-True]": [
+"boundary",
+"positive"
+],
+"tests/test_trips.py::test_schedule_window[delta4-True]": [
+"boundary",
+"positive"
+],
+"tests/test_trips.py::test_schedule_window[delta5-False]": [
+"boundary",
+"negative"
+],
+"tests/test_trips.py::test_schedule_window[delta6-False]": [
+"boundary",
+"negative"
+],
+"tests/test_trips.py::test_schedule_garbage_never_5xx[tomorrow]": [
+"negative"
+],
+"tests/test_trips.py::test_schedule_garbage_never_5xx[2026-13-45T00:00:00Z]": [
+"negative"
+],
+"tests/test_trips.py::test_schedule_garbage_never_5xx[12345]": [
+"negative"
+],
+"tests/test_trips.py::test_schedule_garbage_never_5xx[]": [
+"negative"
+],
+"tests/test_trips.py::test_schedule_garbage_never_5xx[2026-10-28]": [
+"negative"
+],
+"tests/test_trips.py::test_schedule_null_means_now": [
+"positive"
+],
+"tests/test_trips.py::test_rate_completed_trip": [
+"positive",
+"state"
+],
+"tests/test_trips.py::test_rating_boundaries_ok[1]": [
+"boundary",
+"positive",
+"state"
+],
+"tests/test_trips.py::test_rating_boundaries_ok[5]": [
+"boundary",
+"positive",
+"state"
+],
+"tests/test_trips.py::test_rating_validation[{'stars': 0}]": [
+"boundary",
+"negative"
+],
+"tests/test_trips.py::test_rating_validation[{'stars': 6}]": [
+"boundary",
+"negative"
+],
+"tests/test_trips.py::test_rating_validation[{'stars': -1}]": [
+"negative"
+],
+"tests/test_trips.py::test_rating_validation[{'stars': '5'}]": [
+"negative"
+],
+"tests/test_trips.py::test_rating_validation[{'stars': 4.5}]": [
+"negative"
+],
+"tests/test_trips.py::test_rating_validation[{'stars': None}]": [
+"negative"
+],
+"tests/test_trips.py::test_rating_validation[{}]": [
+"negative"
+],
+"tests/test_trips.py::test_rating_validation[{'stars': 5, 'comment': 'ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc'}]": [
+"boundary",
+"negative"
+],
+"tests/test_trips.py::test_rating_validation[{'stars': True}]": [
+"negative"
+],
+"tests/test_trips.py::test_rating_comment_500_ok": [
+"boundary",
+"positive"
+],
+"tests/test_trips.py::test_rating_only_once": [
+"negative",
+"state"
+],
+"tests/test_trips.py::test_rating_before_completion[None]": [
+"negative",
+"state"
+],
+"tests/test_trips.py::test_rating_before_completion[accept]": [
+"negative",
+"state"
+],
+"tests/test_trips.py::test_rating_before_completion[arrive]": [
+"negative",
+"state"
+],
+"tests/test_trips.py::test_rating_before_completion[start]": [
+"negative",
+"state"
+],
+"tests/test_trips.py::test_rating_cancelled_trip": [
+"negative",
+"state"
+],
+"tests/test_trips.py::test_cannot_rate_someone_elses_trip": [
+"negative"
+],
+"tests/test_trips.py::test_rating_unknown_trip": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_credits_wallet": [
+"positive"
+],
+"tests/test_wallet.py::test_topup_both_providers[mtn_momo]": [
+"positive"
+],
+"tests/test_wallet.py::test_topup_both_providers[airtel_money]": [
+"positive"
+],
+"tests/test_wallet.py::test_topup_replay_credits_once": [
+"positive",
+"state"
+],
+"tests/test_wallet.py::test_topup_same_key_different_amount_is_422": [
+"negative",
+"state"
+],
+"tests/test_wallet.py::test_topup_same_key_different_body_any_field_is_422[provider]": [
+"negative",
+"state"
+],
+"tests/test_wallet.py::test_topup_same_key_different_body_any_field_is_422[phone]": [
+"negative",
+"state"
+],
+"tests/test_wallet.py::test_idempotency_key_is_scoped_per_rider": [
+"inferred",
+"positive",
+"state"
+],
+"tests/test_wallet.py::test_topup_requires_idempotency_key": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_empty_idempotency_key_rejected": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_invalid_json": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_requires_auth": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_amount_boundaries[499-False]": [
+"boundary",
+"negative"
+],
+"tests/test_wallet.py::test_topup_amount_boundaries[500-True]": [
+"boundary",
+"positive"
+],
+"tests/test_wallet.py::test_topup_amount_boundaries[501-True]": [
+"boundary",
+"positive"
+],
+"tests/test_wallet.py::test_topup_amount_boundaries[2000000-True]": [
+"boundary",
+"positive"
+],
+"tests/test_wallet.py::test_topup_amount_boundaries[2000001-False]": [
+"boundary",
+"negative"
+],
+"tests/test_wallet.py::test_topup_amount_boundaries[0-False]": [
+"boundary",
+"negative"
+],
+"tests/test_wallet.py::test_topup_amount_boundaries[-1-False]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_amount_boundaries[-10000-False]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_amount_boundaries[1000000000000000000-False]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_amount_wrong_type['10000']": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_amount_wrong_type[10000.5]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_amount_wrong_type[True]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_amount_wrong_type[None]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_amount_wrong_type[[10000]]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_amount_wrong_type[{'v': 1}]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_phone_pattern[+256800100487]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_phone_pattern[0700100487]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_phone_pattern[+25670010048]": [
+"boundary",
+"negative"
+],
+"tests/test_wallet.py::test_topup_phone_pattern[+2567001004871]": [
+"boundary",
+"negative"
+],
+"tests/test_wallet.py::test_topup_phone_pattern[+256 700100487]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_phone_pattern[256700100487]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_phone_pattern[+256700100487\\n]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_phone_pattern[+2567001004ab]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_phone_pattern[]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_phone_pattern[None]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_phone_pattern[700100487]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_provider_enum[mpesa]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_provider_enum[MTN_MOMO]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_provider_enum[]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_provider_enum[None]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_provider_enum[5]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_missing_field[amount]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_missing_field[provider]": [
+"negative"
+],
+"tests/test_wallet.py::test_topup_missing_field[phone]": [
+"negative"
+],
+"tests/test_wallet.py::test_ledger_reconciles_after_topups": [
+"positive",
+"state"
+],
+"tests/test_wallet.py::test_ledger_entry_matches_topup": [
+"positive"
+],
+"tests/test_wallet.py::test_wallets_are_isolated": [
+"positive"
+],
+"tests/test_wallet.py::test_parallel_replays_credit_once": [
+"concurrency",
+"positive",
+"state"
+],
+"tests/test_wallet.py::test_parallel_distinct_topups_no_lost_update": [
+"concurrency",
+"positive",
+"state"
+]
+}

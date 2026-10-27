@@ -1,0 +1,63 @@
+name: api-tests
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 3 * * *"        # nightly, 06:00 EAT: slow tests + 30-run Boda Assist gate
+  workflow_dispatch:
+
+# One run at a time: the sandbox state is shared per candidate key and every test resets it.
+concurrency:
+  group: qa-sandbox
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  api:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CANDIDATE_KEY: ${{ secrets.QA_CANDIDATE_KEY }}     # never in code or logs
+      RUN_SLOW: ${{ github.event_name == 'schedule' && '1' || '0' }}
+      EVAL_RUNS: ${{ github.event_name == 'schedule' && '30' || '5' }}
+      JUDGE_API_KEY: ${{ secrets.JUDGE_API_KEY }}        # optional LLM judge
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Fail fast if the secret is missing
+        run: test -n "$CANDIDATE_KEY" || (echo "QA_CANDIDATE_KEY secret not set (forks do not receive secrets)"; exit 1)
+
+      - name: API test suite
+        # Fails the build on any failed test (the brief requires this). Set XFAIL_KNOWN_BUGS=1 to strict-xfail
+        # bugs marked "confirmed" in known_bugs.json once they have tickets (see README "Known failures").
+        run: pytest --junitxml=reports/junit.xml --html=reports/report.html --self-contained-html
+
+      - name: Coverage report (operations, contract, behaviour, execution, defects)
+        if: always()          # also after a red run: it reads the junit + api_calls.json the run left behind
+        run: |
+          python coverage_report.py --out-md reports/COVERAGE.md --out-html reports/coverage.html
+          cat reports/COVERAGE.md | sed -n '1,20p' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Boda Assist evaluation
+        if: always()          # run even when API tests fail so we get both signals
+        run: python eval/boda_assist_eval.py --runs "$EVAL_RUNS"
+
+      - name: Publish summary
+        if: always()
+        run: |
+          echo "## Boda Assist" >> "$GITHUB_STEP_SUMMARY"
+          cat reports/boda_assist_report.md >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qa-reports-${{ github.run_id }}
+          path: reports/
+          retention-days: 30

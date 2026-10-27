@@ -1,0 +1,1085 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.5, pytest-8.3.3, pluggy-1.7.0
+rootdir: /workspace/cwr-tasks/safeboda/part2_api_testing
+configfile: pytest.ini
+testpaths: tests
+plugins: html-4.1.1, metadata-3.1.1
+collected 371 items
+
+tests/test_auth_contract.py ..................................F....FFF.F [ 11%]
+.....F....F...............                                               [ 18%]
+tests/test_auth_matrix.py .............................................. [ 31%]
+                                                                         [ 31%]
+tests/test_concurrency.py FFFF.F                                         [ 32%]
+tests/test_driver_and_flows.py .F.F...FF..........................       [ 42%]
+tests/test_estimates.py ......F...............F...FF.......F.FFFF....... [ 55%]
+..........s                                                              [ 58%]
+tests/test_support_contract.py ............F..                           [ 62%]
+tests/test_trips.py FE........F...............F....FFF.F.F.........FF... [ 76%]
+..F...........................FFFFF..                                    [ 86%]
+tests/test_wallet.py ...F.............................................F. [100%]
+
+==================================== ERRORS ====================================
+________________ ERROR at setup of test_estimate_is_single_use _________________
+
+key = '***'
+
+    @pytest.fixture
+    def api(key):
+        """Fresh, reset sandbox for every test. Data is private to the key, so do NOT run with xdist."""
+        a = Api(key)
+>       a.reset()
+
+conftest.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>
+
+    def reset(self):
+>       r = self.call("POST", "/v1/_reset")
+E       qa_api.SandboxUnavailable: POST /v1/_reset: ReadTimeout talking to the sandbox
+
+qa_api.py:253: SandboxUnavailable
+=================================== FAILURES ===================================
+________ test_malformed_body_is_client_error[array-/v1/fare-estimates] _________
+
+api = <Api key=***>, path = '/v1/fare-estimates', headers = {}, body = '[]'
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("path,headers", POST_TARGETS, ids=[p for p, _ in POST_TARGETS])
+    @pytest.mark.parametrize("body", BAD_BODIES, ids=["not-json", "array", "null", "truncated", "string", "number", "deep-nesting", "binary"])
+    def test_malformed_body_is_client_error(api, path, headers, body):
+>       r = api.post(path, "nakato", raw=body, headers=headers)
+
+tests/test_auth_contract.py:136: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/fare-estimates', as_ = 'nakato'
+kw = {'headers': {}, 'raw': '[]'}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/fare-estimates -> 500 (undocumented status, checked against Error): error: Additional properties are not allowed ('stack' was unexpected)
+
+qa_api.py:250: SchemaMismatch
+_________ test_malformed_body_is_client_error[null-/v1/fare-estimates] _________
+
+api = <Api key=***>, path = '/v1/fare-estimates', headers = {}, body = 'null'
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("path,headers", POST_TARGETS, ids=[p for p, _ in POST_TARGETS])
+    @pytest.mark.parametrize("body", BAD_BODIES, ids=["not-json", "array", "null", "truncated", "string", "number", "deep-nesting", "binary"])
+    def test_malformed_body_is_client_error(api, path, headers, body):
+>       r = api.post(path, "nakato", raw=body, headers=headers)
+
+tests/test_auth_contract.py:136: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/fare-estimates', as_ = 'nakato'
+kw = {'headers': {}, 'raw': 'null'}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/fare-estimates -> 500 (undocumented status, checked against Error): error: Additional properties are not allowed ('stack' was unexpected)
+
+qa_api.py:250: SchemaMismatch
+_____________ test_malformed_body_is_client_error[null-/v1/trips] ______________
+
+api = <Api key=***>, path = '/v1/trips', headers = {}, body = 'null'
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("path,headers", POST_TARGETS, ids=[p for p, _ in POST_TARGETS])
+    @pytest.mark.parametrize("body", BAD_BODIES, ids=["not-json", "array", "null", "truncated", "string", "number", "deep-nesting", "binary"])
+    def test_malformed_body_is_client_error(api, path, headers, body):
+>       r = api.post(path, "nakato", raw=body, headers=headers)
+
+tests/test_auth_contract.py:136: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/trips', as_ = 'nakato'
+kw = {'headers': {}, 'raw': 'null'}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/trips -> 500 (undocumented status, checked against Error): error: Additional properties are not allowed ('stack' was unexpected)
+
+qa_api.py:250: SchemaMismatch
+_________ test_malformed_body_is_client_error[null-/v1/wallet/top-ups] _________
+
+api = <Api key=***>, path = '/v1/wallet/top-ups'
+headers = {'Idempotency-Key': 'bad-body-key'}, body = 'null'
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("path,headers", POST_TARGETS, ids=[p for p, _ in POST_TARGETS])
+    @pytest.mark.parametrize("body", BAD_BODIES, ids=["not-json", "array", "null", "truncated", "string", "number", "deep-nesting", "binary"])
+    def test_malformed_body_is_client_error(api, path, headers, body):
+>       r = api.post(path, "nakato", raw=body, headers=headers)
+
+tests/test_auth_contract.py:136: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/wallet/top-ups', as_ = 'nakato'
+kw = {'headers': {'Idempotency-Key': 'bad-body-key'}, 'raw': 'null'}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/wallet/top-ups -> 500 (undocumented status, checked against Error): error: Additional properties are not allowed ('stack' was unexpected)
+
+qa_api.py:250: SchemaMismatch
+__________ test_malformed_body_is_client_error[null-/v1/support/chat] __________
+
+api = <Api key=***>, path = '/v1/support/chat', headers = {}, body = 'null'
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("path,headers", POST_TARGETS, ids=[p for p, _ in POST_TARGETS])
+    @pytest.mark.parametrize("body", BAD_BODIES, ids=["not-json", "array", "null", "truncated", "string", "number", "deep-nesting", "binary"])
+    def test_malformed_body_is_client_error(api, path, headers, body):
+>       r = api.post(path, "nakato", raw=body, headers=headers)
+
+tests/test_auth_contract.py:136: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/support/chat', as_ = 'nakato'
+kw = {'headers': {}, 'raw': 'null'}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/support/chat -> 500 (undocumented status, checked against Error): error: Additional properties are not allowed ('stack' was unexpected)
+
+qa_api.py:250: SchemaMismatch
+________ test_malformed_body_is_client_error[string-/v1/fare-estimates] ________
+
+api = <Api key=***>, path = '/v1/fare-estimates', headers = {}, body = '"str"'
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("path,headers", POST_TARGETS, ids=[p for p, _ in POST_TARGETS])
+    @pytest.mark.parametrize("body", BAD_BODIES, ids=["not-json", "array", "null", "truncated", "string", "number", "deep-nesting", "binary"])
+    def test_malformed_body_is_client_error(api, path, headers, body):
+>       r = api.post(path, "nakato", raw=body, headers=headers)
+
+tests/test_auth_contract.py:136: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/fare-estimates', as_ = 'nakato'
+kw = {'headers': {}, 'raw': '"str"'}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/fare-estimates -> 500 (undocumented status, checked against Error): error: Additional properties are not allowed ('stack' was unexpected)
+
+qa_api.py:250: SchemaMismatch
+________ test_malformed_body_is_client_error[number-/v1/fare-estimates] ________
+
+api = <Api key=***>, path = '/v1/fare-estimates', headers = {}, body = '123'
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("path,headers", POST_TARGETS, ids=[p for p, _ in POST_TARGETS])
+    @pytest.mark.parametrize("body", BAD_BODIES, ids=["not-json", "array", "null", "truncated", "string", "number", "deep-nesting", "binary"])
+    def test_malformed_body_is_client_error(api, path, headers, body):
+>       r = api.post(path, "nakato", raw=body, headers=headers)
+
+tests/test_auth_contract.py:136: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/fare-estimates', as_ = 'nakato'
+kw = {'headers': {}, 'raw': '123'}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/fare-estimates -> 500 (undocumented status, checked against Error): error: Additional properties are not allowed ('stack' was unexpected)
+
+qa_api.py:250: SchemaMismatch
+______________ test_two_drivers_accept_same_trip_exactly_one_wins ______________
+
+api = <Api key=***>
+
+    @pytest.mark.state
+    def test_two_drivers_accept_same_trip_exactly_one_wins(api):
+        t = api.new_trip()
+        rs = run_parallel(lambda i: api.driver_step(["ssemanda", "achieng"][i], t["id"], "accept"), 2)
+        codes = sorted(r.status_code for r in rs)
+>       assert codes == [200, 409], codes
+E       AssertionError: [200, 200]
+E       assert [200, 200] == [200, 409]
+E         
+E         At index 1 diff: 200 != 409
+E         Use -v to get more diff
+
+tests/test_concurrency.py:16: AssertionError
+____________ test_same_estimate_booked_in_parallel_creates_one_trip ____________
+
+api = <Api key=***>
+
+    @pytest.mark.state
+    def test_same_estimate_booked_in_parallel_creates_one_trip(api):
+        est = api.new_estimate()
+        rs = run_parallel(lambda i: api.book("nakato", est["id"], idem=str(uuid.uuid4())), 8)
+        codes = sorted(r.status_code for r in rs)
+>       assert codes.count(201) == 1 and codes.count(409) == 7, codes
+E       AssertionError: [201, 201, 409, 409, 409, 409, ...]
+E       assert (2 == 1)
+E        +  where 2 = <built-in method count of list object at 0x7eff5c0ff800>(201)
+E        +    where <built-in method count of list object at 0x7eff5c0ff800> = [201, 201, 409, 409, 409, 409, ...].count
+
+tests/test_concurrency.py:26: AssertionError
+________ test_same_idempotency_key_booked_in_parallel_creates_one_trip _________
+
+api = <Api key=***>
+
+    @pytest.mark.state
+    def test_same_idempotency_key_booked_in_parallel_creates_one_trip(api):
+        est, key = api.new_estimate(), str(uuid.uuid4())
+        rs = run_parallel(lambda i: api.book("nakato", est["id"], idem=key), 8)
+        assert {r.status_code for r in rs} <= {200, 201}, [r.status_code for r in rs]
+>       assert len({r.json()["id"] for r in rs}) == 1
+E       AssertionError: assert 3 == 1
+E        +  where 3 = len({'trp_5B4E2EFB6D87', 'trp_D11D8CEB9BBD', 'trp_D42D91C900EC'})
+
+tests/test_concurrency.py:35: AssertionError
+__________________ test_parallel_complete_charges_wallet_once __________________
+
+api = <Api key=***>
+
+    @pytest.mark.state
+    def test_parallel_complete_charges_wallet_once(api):
+        t = api.new_trip("nakato", "wallet")
+        api.drive(t["id"], upto="start")
+        rs = run_parallel(lambda i: api.driver_step("ssemanda", t["id"], "complete"), 6)
+        codes = [r.status_code for r in rs]
+        charges = len([x for x in api.ledger("nakato")["data"] if x["type"] == "trip_charge"])
+        charged = 25000 - api.balance("nakato")
+        # Check money first so the failure message says what the rider lost, not just the status codes.
+>       assert (charges, charged) == (1, t["fare"]["amount"]), \
+            f"wallet charged {charges}x ({charged} UGX for a {t['fare']['amount']} UGX fare); statuses {codes}"
+E       AssertionError: wallet charged 2x (10400 UGX for a 5200 UGX fare); statuses [409, 409, 200, 200, 409, 409]
+E       assert (2, 10400) == (1, 5200)
+E         
+E         At index 0 diff: 2 != 1
+E         Use -v to get more diff
+
+tests/test_concurrency.py:48: AssertionError
+____________ test_two_wallet_bookings_cannot_overdraw_on_completion ____________
+
+api = <Api key=***>
+
+    @pytest.mark.negative
+    @pytest.mark.state
+    @pytest.mark.boundary
+    @pytest.mark.spec_gap
+    def test_two_wallet_bookings_cannot_overdraw_on_completion(api):
+        """Spec checks balance at booking but charges at completion. Two bookings, each affordable
+        alone, must not leave the wallet negative. Spec is silent on which step should refuse."""
+        probe = api.new_estimate("okello")
+        fare = probe["fare"]["amount"]
+        if fare <= 3000:
+            pytest.skip("fare fits in starting balance")
+        need = fare - 3000
+        if need < 500:
+            pytest.skip("cannot construct balance")
+        api.topup("okello", need)  # balance == fare exactly: affordable once, not twice
+        ests = [api.new_estimate("okello") for _ in range(2)]
+        rs = [api.book("okello", e["id"], "wallet") for e in ests]
+        booked = [r.json()["id"] for r in rs if r.status_code == 201]
+        for tid, drv in zip(booked, ("ssemanda", "achieng")):
+            api.drive(tid, driver=drv)
+>       assert api.balance("okello") >= 0, f"wallet overdrawn: {api.balance('okello')}"
+E       AssertionError: wallet overdrawn: -5200
+E       assert -5200 >= 0
+E        +  where -5200 = balance('okello')
+E        +    where balance = <Api key=***>.balance
+
+tests/test_concurrency.py:86: AssertionError
+____________________ test_full_car_journey_with_car_driver _____________________
+
+api = <Api key=***>
+
+    @pytest.mark.positive
+    @pytest.mark.state
+    def test_full_car_journey_with_car_driver(api):
+>       t = api.new_trip("nakato", "cash", service="car")
+
+tests/test_driver_and_flows.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+qa_api.py:294: in new_trip
+    est = self.new_estimate(rider, pickup=pickup, dropoff=dropoff, service=service, promo=promo)
+qa_api.py:284: in new_estimate
+    r = self.estimate(rider, **kw)
+qa_api.py:281: in estimate
+    return self.post("/v1/fare-estimates", rider, json=body)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/fare-estimates', as_ = 'nakato'
+kw = {'json': {'dropoff': {'label': 'Ntinda Shopping Complex', 'lat': 0.35402, 'lng': 32.61498}, 'pickup': {'label': 'Acacia Mall', 'lat': 0.33495, 'lng': 32.59352}, 'service_type': 'car'}}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/fare-estimates -> 201: fare/amount: 11677.5 is not of type 'integer'; fare/original_amount: 11677.5 is not of type 'integer'
+
+qa_api.py:250: SchemaMismatch
+___________________ test_available_trips_filtered_by_service ___________________
+
+api = <Api key=***>
+
+    @pytest.mark.positive
+    def test_available_trips_filtered_by_service(api):
+>       boda, car = api.new_trip(service="boda")["id"], api.new_trip(service="car")["id"]
+
+tests/test_driver_and_flows.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+qa_api.py:294: in new_trip
+    est = self.new_estimate(rider, pickup=pickup, dropoff=dropoff, service=service, promo=promo)
+qa_api.py:284: in new_estimate
+    r = self.estimate(rider, **kw)
+qa_api.py:281: in estimate
+    return self.post("/v1/fare-estimates", rider, json=body)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/fare-estimates', as_ = 'nakato'
+kw = {'json': {'dropoff': {'label': 'Ntinda Shopping Complex', 'lat': 0.35402, 'lng': 32.61498}, 'pickup': {'label': 'Acacia Mall', 'lat': 0.33495, 'lng': 32.59352}, 'service_type': 'car'}}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/fare-estimates -> 201: fare/amount: 11677.5 is not of type 'integer'; fare/original_amount: 11677.5 is not of type 'integer'
+
+qa_api.py:250: SchemaMismatch
+_____________________ test_service_mismatch[ssemanda-car] ______________________
+
+api = <Api key=***>, driver = 'ssemanda', service = 'car'
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("driver,service", [("mugisha", "boda"), ("mugisha", "send"), ("ssemanda", "car"), ("achieng", "car")])
+    def test_service_mismatch(api, driver, service):
+>       t = api.new_trip(service=service)
+
+tests/test_driver_and_flows.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+qa_api.py:294: in new_trip
+    est = self.new_estimate(rider, pickup=pickup, dropoff=dropoff, service=service, promo=promo)
+qa_api.py:284: in new_estimate
+    r = self.estimate(rider, **kw)
+qa_api.py:281: in estimate
+    return self.post("/v1/fare-estimates", rider, json=body)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/fare-estimates', as_ = 'nakato'
+kw = {'json': {'dropoff': {'label': 'Ntinda Shopping Complex', 'lat': 0.35402, 'lng': 32.61498}, 'pickup': {'label': 'Acacia Mall', 'lat': 0.33495, 'lng': 32.59352}, 'service_type': 'car'}}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/fare-estimates -> 201: fare/amount: 11677.5 is not of type 'integer'; fare/original_amount: 11677.5 is not of type 'integer'
+
+qa_api.py:250: SchemaMismatch
+______________________ test_service_mismatch[achieng-car] ______________________
+
+api = <Api key=***>, driver = 'achieng', service = 'car'
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("driver,service", [("mugisha", "boda"), ("mugisha", "send"), ("ssemanda", "car"), ("achieng", "car")])
+    def test_service_mismatch(api, driver, service):
+>       t = api.new_trip(service=service)
+
+tests/test_driver_and_flows.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+qa_api.py:294: in new_trip
+    est = self.new_estimate(rider, pickup=pickup, dropoff=dropoff, service=service, promo=promo)
+qa_api.py:284: in new_estimate
+    r = self.estimate(rider, **kw)
+qa_api.py:281: in estimate
+    return self.post("/v1/fare-estimates", rider, json=body)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/fare-estimates', as_ = 'nakato'
+kw = {'json': {'dropoff': {'label': 'Ntinda Shopping Complex', 'lat': 0.35402, 'lng': 32.61498}, 'pickup': {'label': 'Acacia Mall', 'lat': 0.33495, 'lng': 32.59352}, 'service_type': 'car'}}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/fare-estimates -> 201: fare/amount: 11677.5 is not of type 'integer'; fare/original_amount: 11677.5 is not of type 'integer'
+
+qa_api.py:250: SchemaMismatch
+___________________________ test_car_estimate_works ____________________________
+
+api = <Api key=***>
+
+    @pytest.mark.positive
+    def test_car_estimate_works(api):
+>       f = api.new_estimate(service="car")["fare"]
+
+tests/test_estimates.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+qa_api.py:284: in new_estimate
+    r = self.estimate(rider, **kw)
+qa_api.py:281: in estimate
+    return self.post("/v1/fare-estimates", rider, json=body)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/fare-estimates', as_ = 'nakato'
+kw = {'json': {'dropoff': {'label': 'Ntinda Shopping Complex', 'lat': 0.35402, 'lng': 32.61498}, 'pickup': {'label': 'Acacia Mall', 'lat': 0.33495, 'lng': 32.59352}, 'service_type': 'car'}}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/fare-estimates -> 201: fare/amount: 11677.5 is not of type 'integer'; fare/original_amount: 11677.5 is not of type 'integer'
+
+qa_api.py:250: SchemaMismatch
+__________ test_fare_never_negative_on_very_short_trip[SENDFREE-send] __________
+
+api = <Api key=***>, promo = 'SENDFREE', service = 'send'
+
+    @pytest.mark.positive
+    @pytest.mark.boundary
+    @pytest.mark.parametrize("promo,service", [("BODA2000", "boda"), ("SENDFREE", "send"), ("SAFE20", "boda"), ("SAFE20", "car")])
+    def test_fare_never_negative_on_very_short_trip(api, promo, service):
+>       f = api.new_estimate(pickup=ACACIA, dropoff=NEAR_ACACIA, service=service, promo=promo)["fare"]
+
+tests/test_estimates.py:113: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+qa_api.py:284: in new_estimate
+    r = self.estimate(rider, **kw)
+qa_api.py:281: in estimate
+    return self.post("/v1/fare-estimates", rider, json=body)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/fare-estimates', as_ = 'nakato'
+kw = {'json': {'dropoff': {'label': 'Near Acacia', 'lat': 0.33855, 'lng': 32.59352}, 'pickup': {'label': 'Acacia Mall', 'lat': 0.33495, 'lng': 32.59352}, 'promo_code': 'SENDFREE', 'service_type': 'send'}}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/fare-estimates -> 201: fare/amount: -1000 is less than the minimum of 0
+
+qa_api.py:250: SchemaMismatch
+_____________________ test_missing_required_field[pickup] ______________________
+
+api = <Api key=***>, field = 'pickup'
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("field", ["pickup", "dropoff", "service_type"])
+    def test_missing_required_field(api, field):
+        body = {"pickup": ACACIA, "dropoff": NTINDA, "service_type": "boda"}
+        body.pop(field)
+>       assert_error(api.post("/v1/fare-estimates", "nakato", json=body), 422, "VALIDATION_ERROR")
+
+tests/test_estimates.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/fare-estimates', as_ = 'nakato'
+kw = {'json': {'dropoff': {'label': 'Ntinda Shopping Complex', 'lat': 0.35402, 'lng': 32.61498}, 'service_type': 'boda'}}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/fare-estimates -> 500 (undocumented status, checked against Error): error: Additional properties are not allowed ('stack' was unexpected)
+
+qa_api.py:250: SchemaMismatch
+_____________________ test_missing_required_field[dropoff] _____________________
+
+api = <Api key=***>, field = 'dropoff'
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("field", ["pickup", "dropoff", "service_type"])
+    def test_missing_required_field(api, field):
+        body = {"pickup": ACACIA, "dropoff": NTINDA, "service_type": "boda"}
+        body.pop(field)
+>       assert_error(api.post("/v1/fare-estimates", "nakato", json=body), 422, "VALIDATION_ERROR")
+
+tests/test_estimates.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/fare-estimates', as_ = 'nakato'
+kw = {'json': {'pickup': {'label': 'Acacia Mall', 'lat': 0.33495, 'lng': 32.59352}, 'service_type': 'boda'}}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/fare-estimates -> 500 (undocumented status, checked against Error): error: Additional properties are not allowed ('stack' was unexpected)
+
+qa_api.py:250: SchemaMismatch
+_____________________ test_invalid_point[pickup-label121] ______________________
+
+api = <Api key=***>, which = 'pickup'
+bad = {'label': 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', 'lat': 0.33495, 'lng': 32.59352}
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("bad", [
+        pytest.param({**ACACIA, "lat": 91}, marks=pytest.mark.boundary, id="lat91"), pytest.param({**ACACIA, "lat": -91}, marks=pytest.mark.boundary, id="lat-91"),
+        pytest.param({**ACACIA, "lng": 181}, marks=pytest.mark.boundary, id="lng181"), pytest.param({**ACACIA, "lng": -181}, marks=pytest.mark.boundary, id="lng-181"),
+        pytest.param({**ACACIA, "lat": "0.33"}, id="lat-string"), pytest.param({"lat": 0.3}, id="no-lng"),
+        pytest.param({**ACACIA, "label": "x" * 121}, marks=pytest.mark.boundary, id="label121"), pytest.param({**ACACIA, "lat": None}, id="lat-null")])
+    @pytest.mark.parametrize("which", ["pickup", "dropoff"])
+    def test_invalid_point(api, which, bad):
+        kw = {"pickup": ACACIA, "dropoff": NTINDA}
+        kw[which] = bad
+        r = api.estimate(**kw)
+>       assert_error(r, 422)
+
+tests/test_estimates.py:142: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+r = <Response [201]>, status = 422, code = None
+
+    def assert_error(r, status, code=None):
+>       assert r.status_code == status, f"expected {status} got {r.status_code}: {r.text[:300]}"
+E       AssertionError: expected 422 got 201: {"id":"est_72024C3568A1","service_type":"boda","pickup":{"lat":0.33495,"lng":32.59352,"label":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"},"dropoff":{"lat":0.35402,"lng":32.61498,"label":"Ntinda Shopping Complex"},"distan
+
+qa_api.py:63: AssertionError
+______________________ test_invalid_point[dropoff-lat91] _______________________
+
+api = <Api key=***>, which = 'dropoff'
+bad = {'label': 'Acacia Mall', 'lat': 91, 'lng': 32.59352}
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("bad", [
+        pytest.param({**ACACIA, "lat": 91}, marks=pytest.mark.boundary, id="lat91"), pytest.param({**ACACIA, "lat": -91}, marks=pytest.mark.boundary, id="lat-91"),
+        pytest.param({**ACACIA, "lng": 181}, marks=pytest.mark.boundary, id="lng181"), pytest.param({**ACACIA, "lng": -181}, marks=pytest.mark.boundary, id="lng-181"),
+        pytest.param({**ACACIA, "lat": "0.33"}, id="lat-string"), pytest.param({"lat": 0.3}, id="no-lng"),
+        pytest.param({**ACACIA, "label": "x" * 121}, marks=pytest.mark.boundary, id="label121"), pytest.param({**ACACIA, "lat": None}, id="lat-null")])
+    @pytest.mark.parametrize("which", ["pickup", "dropoff"])
+    def test_invalid_point(api, which, bad):
+        kw = {"pickup": ACACIA, "dropoff": NTINDA}
+        kw[which] = bad
+>       r = api.estimate(**kw)
+
+tests/test_estimates.py:141: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+qa_api.py:281: in estimate
+    return self.post("/v1/fare-estimates", rider, json=body)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/fare-estimates', as_ = 'nakato'
+kw = {'json': {'dropoff': {'label': 'Acacia Mall', 'lat': 91, 'lng': 32.59352}, 'pickup': {'label': 'Acacia Mall', 'lat': 0.33495, 'lng': 32.59352}, 'service_type': 'boda'}}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/fare-estimates -> 201: dropoff/lat: 91 is greater than the maximum of 90
+
+qa_api.py:250: SchemaMismatch
+______________________ test_invalid_point[dropoff-lat-91] ______________________
+
+api = <Api key=***>, which = 'dropoff'
+bad = {'label': 'Acacia Mall', 'lat': -91, 'lng': 32.59352}
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("bad", [
+        pytest.param({**ACACIA, "lat": 91}, marks=pytest.mark.boundary, id="lat91"), pytest.param({**ACACIA, "lat": -91}, marks=pytest.mark.boundary, id="lat-91"),
+        pytest.param({**ACACIA, "lng": 181}, marks=pytest.mark.boundary, id="lng181"), pytest.param({**ACACIA, "lng": -181}, marks=pytest.mark.boundary, id="lng-181"),
+        pytest.param({**ACACIA, "lat": "0.33"}, id="lat-string"), pytest.param({"lat": 0.3}, id="no-lng"),
+        pytest.param({**ACACIA, "label": "x" * 121}, marks=pytest.mark.boundary, id="label121"), pytest.param({**ACACIA, "lat": None}, id="lat-null")])
+    @pytest.mark.parametrize("which", ["pickup", "dropoff"])
+    def test_invalid_point(api, which, bad):
+        kw = {"pickup": ACACIA, "dropoff": NTINDA}
+        kw[which] = bad
+>       r = api.estimate(**kw)
+
+tests/test_estimates.py:141: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+qa_api.py:281: in estimate
+    return self.post("/v1/fare-estimates", rider, json=body)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/fare-estimates', as_ = 'nakato'
+kw = {'json': {'dropoff': {'label': 'Acacia Mall', 'lat': -91, 'lng': 32.59352}, 'pickup': {'label': 'Acacia Mall', 'lat': 0.33495, 'lng': 32.59352}, 'service_type': 'boda'}}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/fare-estimates -> 201: dropoff/lat: -91 is less than the minimum of -90
+
+qa_api.py:250: SchemaMismatch
+______________________ test_invalid_point[dropoff-lng181] ______________________
+
+api = <Api key=***>, which = 'dropoff'
+bad = {'label': 'Acacia Mall', 'lat': 0.33495, 'lng': 181}
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("bad", [
+        pytest.param({**ACACIA, "lat": 91}, marks=pytest.mark.boundary, id="lat91"), pytest.param({**ACACIA, "lat": -91}, marks=pytest.mark.boundary, id="lat-91"),
+        pytest.param({**ACACIA, "lng": 181}, marks=pytest.mark.boundary, id="lng181"), pytest.param({**ACACIA, "lng": -181}, marks=pytest.mark.boundary, id="lng-181"),
+        pytest.param({**ACACIA, "lat": "0.33"}, id="lat-string"), pytest.param({"lat": 0.3}, id="no-lng"),
+        pytest.param({**ACACIA, "label": "x" * 121}, marks=pytest.mark.boundary, id="label121"), pytest.param({**ACACIA, "lat": None}, id="lat-null")])
+    @pytest.mark.parametrize("which", ["pickup", "dropoff"])
+    def test_invalid_point(api, which, bad):
+        kw = {"pickup": ACACIA, "dropoff": NTINDA}
+        kw[which] = bad
+>       r = api.estimate(**kw)
+
+tests/test_estimates.py:141: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+qa_api.py:281: in estimate
+    return self.post("/v1/fare-estimates", rider, json=body)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/fare-estimates', as_ = 'nakato'
+kw = {'json': {'dropoff': {'label': 'Acacia Mall', 'lat': 0.33495, 'lng': 181}, 'pickup': {'label': 'Acacia Mall', 'lat': 0.33495, 'lng': 32.59352}, 'service_type': 'boda'}}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/fare-estimates -> 201: dropoff/lng: 181 is greater than the maximum of 180
+
+qa_api.py:250: SchemaMismatch
+_____________________ test_invalid_point[dropoff-lng-181] ______________________
+
+api = <Api key=***>, which = 'dropoff'
+bad = {'label': 'Acacia Mall', 'lat': 0.33495, 'lng': -181}
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("bad", [
+        pytest.param({**ACACIA, "lat": 91}, marks=pytest.mark.boundary, id="lat91"), pytest.param({**ACACIA, "lat": -91}, marks=pytest.mark.boundary, id="lat-91"),
+        pytest.param({**ACACIA, "lng": 181}, marks=pytest.mark.boundary, id="lng181"), pytest.param({**ACACIA, "lng": -181}, marks=pytest.mark.boundary, id="lng-181"),
+        pytest.param({**ACACIA, "lat": "0.33"}, id="lat-string"), pytest.param({"lat": 0.3}, id="no-lng"),
+        pytest.param({**ACACIA, "label": "x" * 121}, marks=pytest.mark.boundary, id="label121"), pytest.param({**ACACIA, "lat": None}, id="lat-null")])
+    @pytest.mark.parametrize("which", ["pickup", "dropoff"])
+    def test_invalid_point(api, which, bad):
+        kw = {"pickup": ACACIA, "dropoff": NTINDA}
+        kw[which] = bad
+>       r = api.estimate(**kw)
+
+tests/test_estimates.py:141: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+qa_api.py:281: in estimate
+    return self.post("/v1/fare-estimates", rider, json=body)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/fare-estimates', as_ = 'nakato'
+kw = {'json': {'dropoff': {'label': 'Acacia Mall', 'lat': 0.33495, 'lng': -181}, 'pickup': {'label': 'Acacia Mall', 'lat': 0.33495, 'lng': 32.59352}, 'service_type': 'boda'}}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SchemaMismatch: response does not match spec for POST /v1/fare-estimates -> 201: dropoff/lng: -181 is less than the minimum of -180
+
+qa_api.py:250: SchemaMismatch
+______________________ test_chat_other_riders_trip_is_404 ______________________
+
+api = <Api key=***>
+
+    @pytest.mark.negative
+    def test_chat_other_riders_trip_is_404(api):
+        t = api.new_trip("okello")
+>       assert_error(chat(api, trip_id=t["id"]), 404, "TRIP_NOT_FOUND")
+
+tests/test_support_contract.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+r = <Response [200]>, status = 404, code = 'TRIP_NOT_FOUND'
+
+    def assert_error(r, status, code=None):
+>       assert r.status_code == status, f"expected {status} got {r.status_code}: {r.text[:300]}"
+E       AssertionError: expected 404 got 200: {"conversation_id":"conv_62F46C70F66A","reply":"Sorry about that. I have logged a refund request for our support team. They will review it within 24 hours and update you by SMS.","intent":"refund","model":"boda-assist-2","created_at":"2026-10-21T23:33:35.359Z"}
+
+qa_api.py:63: AssertionError
+_____________________________ test_book_cash_trip ______________________________
+
+api = <Api key=***>
+
+    @pytest.mark.positive
+    def test_book_cash_trip(api):
+        est = api.new_estimate()
+>       r = api.book("nakato", est["id"], "cash", notes="Meet me at the main gate")
+
+tests/test_trips.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+qa_api.py:290: in book
+    return self.post("/v1/trips", rider, json={"estimate_id": estimate_id, "payment_method": payment, **extra},
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Api key=***>, path = '/v1/trips', as_ = 'nakato'
+kw = {'headers': {'Idempotency-Key': '76be0f69-a1c4-41a6-8bcc-d00b42302b45'}, 'json': {'estimate_id': 'est_E3AE28EECA55', 'notes': 'Meet me at the main gate', 'payment_method': 'cash'}}
+
+    def post(self, path, as_=None, **kw):
+>       return self.call("POST", path, as_, **kw)
+E       qa_api.SandboxUnavailable: POST /v1/trips: ReadTimeout talking to the sandbox
+
+qa_api.py:250: SandboxUnavailable
+_________________________ test_notes_length[201-False] _________________________
+
+api = <Api key=***>, length = 201, ok = False
+
+    @pytest.mark.boundary
+    @pytest.mark.parametrize("length,ok", [pytest.param(200, True, marks=pytest.mark.positive), pytest.param(201, False, marks=pytest.mark.negative)])
+    def test_notes_length(api, length, ok):
+        est = api.new_estimate()
+        r = api.book("nakato", est["id"], notes="n" * length)
+>       assert r.status_code == (201 if ok else 422), r.text[:200]
+E       AssertionError: {"id":"trp_DA15FDA3170E","status":"requested","service_type":"boda","pickup":{"lat":0.33495,"lng":32.59352,"label":"Acacia Mall"},"dropoff":{"lat":0.35402,"lng":32.61498,"label":"Ntinda Shopping Compl
+E       assert 201 == 422
+E        +  where 201 = <Response [201]>.status_code
+
+tests/test_trips.py:69: AssertionError
+____________________________ test_cancel_completed _____________________________
+
+api = <Api key=***>
+
+    @pytest.mark.negative
+    @pytest.mark.state
+    def test_cancel_completed(api):
+        t = api.new_trip("nakato", "wallet")
+        api.drive(t["id"])
+>       assert_error(api.post(f"/v1/trips/{t['id']}/cancel", "nakato"), 409, "TRIP_COMPLETED")
+
+tests/test_trips.py:202: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+r = <Response [200]>, status = 409, code = 'TRIP_COMPLETED'
+
+    def assert_error(r, status, code=None):
+>       assert r.status_code == status, f"expected {status} got {r.status_code}: {r.text[:300]}"
+E       AssertionError: expected 409 got 200: {"id":"trp_19F681830B19","status":"cancelled","service_type":"boda","pickup":{"lat":0.33495,"lng":32.59352,"label":"Acacia Mall"},"dropoff":{"lat":0.35402,"lng":32.61498,"label":"Ntinda Shopping Complex"},"distance_km":4.15,"fare":{"amount":5200,"original_amount":5200,"discount":0,"currency":"UGX"},
+
+qa_api.py:63: AssertionError
+______________________ test_cancel_reason_wrong_type[int] ______________________
+
+api = <Api key=***>, reason = 123
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("reason", [123, ["late"], {"r": 1}], ids=["int", "list", "object"])
+    def test_cancel_reason_wrong_type(api, reason):
+        """Spec: reason is a string (maxLength 200). Wrong type must be refused and the trip left alone."""
+        t = api.new_trip()
+>       assert_error(api.post(f"/v1/trips/{t['id']}/cancel", "nakato", json={"reason": reason}), 422, "VALIDATION_ERROR")
+
+tests/test_trips.py:240: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+r = <Response [200]>, status = 422, code = 'VALIDATION_ERROR'
+
+    def assert_error(r, status, code=None):
+>       assert r.status_code == status, f"expected {status} got {r.status_code}: {r.text[:300]}"
+E       AssertionError: expected 422 got 200: {"id":"trp_47B5261F4CDF","status":"cancelled","service_type":"boda","pickup":{"lat":0.33495,"lng":32.59352,"label":"Acacia Mall"},"dropoff":{"lat":0.35402,"lng":32.61498,"label":"Ntinda Shopping Complex"},"distance_km":4.15,"fare":{"amount":5200,"original_amount":5200,"discount":0,"currency":"UGX"},
+
+qa_api.py:63: AssertionError
+_____________________ test_cancel_reason_wrong_type[list] ______________________
+
+api = <Api key=***>, reason = ['late']
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("reason", [123, ["late"], {"r": 1}], ids=["int", "list", "object"])
+    def test_cancel_reason_wrong_type(api, reason):
+        """Spec: reason is a string (maxLength 200). Wrong type must be refused and the trip left alone."""
+        t = api.new_trip()
+>       assert_error(api.post(f"/v1/trips/{t['id']}/cancel", "nakato", json={"reason": reason}), 422, "VALIDATION_ERROR")
+
+tests/test_trips.py:240: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+r = <Response [200]>, status = 422, code = 'VALIDATION_ERROR'
+
+    def assert_error(r, status, code=None):
+>       assert r.status_code == status, f"expected {status} got {r.status_code}: {r.text[:300]}"
+E       AssertionError: expected 422 got 200: {"id":"trp_0770ADCC544B","status":"cancelled","service_type":"boda","pickup":{"lat":0.33495,"lng":32.59352,"label":"Acacia Mall"},"dropoff":{"lat":0.35402,"lng":32.61498,"label":"Ntinda Shopping Complex"},"distance_km":4.15,"fare":{"amount":5200,"original_amount":5200,"discount":0,"currency":"UGX"},
+
+qa_api.py:63: AssertionError
+____________________ test_cancel_reason_wrong_type[object] _____________________
+
+api = <Api key=***>, reason = {'r': 1}
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("reason", [123, ["late"], {"r": 1}], ids=["int", "list", "object"])
+    def test_cancel_reason_wrong_type(api, reason):
+        """Spec: reason is a string (maxLength 200). Wrong type must be refused and the trip left alone."""
+        t = api.new_trip()
+>       assert_error(api.post(f"/v1/trips/{t['id']}/cancel", "nakato", json={"reason": reason}), 422, "VALIDATION_ERROR")
+
+tests/test_trips.py:240: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+r = <Response [200]>, status = 422, code = 'VALIDATION_ERROR'
+
+    def assert_error(r, status, code=None):
+>       assert r.status_code == status, f"expected {status} got {r.status_code}: {r.text[:300]}"
+E       AssertionError: expected 422 got 200: {"id":"trp_6721B5440EEE","status":"cancelled","service_type":"boda","pickup":{"lat":0.33495,"lng":32.59352,"label":"Acacia Mall"},"dropoff":{"lat":0.35402,"lng":32.61498,"label":"Ntinda Shopping Complex"},"distance_km":4.15,"fare":{"amount":5200,"original_amount":5200,"discount":0,"currency":"UGX"},
+
+qa_api.py:63: AssertionError
+___________________________ test_get_trip_isolation ____________________________
+
+api = <Api key=***>
+
+    @pytest.mark.negative
+    def test_get_trip_isolation(api):
+        t = api.new_trip("nakato")
+        assert api.get(f"/v1/trips/{t['id']}", "nakato").status_code == 200
+>       assert_error(api.get(f"/v1/trips/{t['id']}", "okello"), 404, "TRIP_NOT_FOUND")
+
+tests/test_trips.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+r = <Response [200]>, status = 404, code = 'TRIP_NOT_FOUND'
+
+    def assert_error(r, status, code=None):
+>       assert r.status_code == status, f"expected {status} got {r.status_code}: {r.text[:300]}"
+E       AssertionError: expected 404 got 200: {"id":"trp_1BE1776D329A","status":"requested","service_type":"boda","pickup":{"lat":0.33495,"lng":32.59352,"label":"Acacia Mall"},"dropoff":{"lat":0.35402,"lng":32.61498,"label":"Ntinda Shopping Complex"},"distance_km":4.15,"fare":{"amount":5200,"original_amount":5200,"discount":0,"currency":"UGX"},
+
+qa_api.py:63: AssertionError
+_____________________________ test_list_pagination _____________________________
+
+api = <Api key=***>
+
+    @pytest.mark.positive
+    def test_list_pagination(api):
+        ids = {api.new_trip()["id"] for _ in range(3)}
+        p1 = api.get("/v1/trips", "nakato", params={"page_size": 2}).json()
+        p2 = api.get("/v1/trips", "nakato", params={"page_size": 2, "page": 2}).json()
+>       assert (p1["total"], p1["page"], p1["page_size"], len(p1["data"]), len(p2["data"])) == (3, 1, 2, 2, 1)
+E       assert (3, 1, 2, 2, 0) == (3, 1, 2, 2, 1)
+E         
+E         At index 4 diff: 0 != 1
+E         Use -v to get more diff
+
+tests/test_trips.py:272: AssertionError
+________________ test_list_invalid_params[{'status': 'bogus'}] _________________
+
+api = <Api key=***>, params = {'status': 'bogus'}
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("params", [pytest.param({"page": 0}, marks=pytest.mark.boundary), {"page": -1}, pytest.param({"page_size": 0}, marks=pytest.mark.boundary),
+                                        pytest.param({"page_size": 51}, marks=pytest.mark.boundary), {"page": "abc"}, {"page_size": "x"},
+                                        {"status": "bogus"}, {"status": "REQUESTED"}, {"page": 1.5}, {"page_size": -5}], ids=str)
+    def test_list_invalid_params(api, params):
+>       assert_error(api.get("/v1/trips", "nakato", params=params), 422)
+
+tests/test_trips.py:307: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+r = <Response [200]>, status = 422, code = None
+
+    def assert_error(r, status, code=None):
+>       assert r.status_code == status, f"expected {status} got {r.status_code}: {r.text[:300]}"
+E       AssertionError: expected 422 got 200: {"data":[],"page":1,"page_size":10,"total":0}
+
+qa_api.py:63: AssertionError
+______________ test_list_invalid_params[{'status': 'REQUESTED'}] _______________
+
+api = <Api key=***>, params = {'status': 'REQUESTED'}
+
+    @pytest.mark.negative
+    @pytest.mark.parametrize("params", [pytest.param({"page": 0}, marks=pytest.mark.boundary), {"page": -1}, pytest.param({"page_size": 0}, marks=pytest.mark.boundary),
+                                        pytest.param({"page_size": 51}, marks=pytest.mark.boundary), {"page": "abc"}, {"page_size": "x"},
+                                        {"status": "bogus"}, {"status": "REQUESTED"}, {"page": 1.5}, {"page_size": -5}], ids=str)
+    def test_list_invalid_params(api, params):
+>       assert_error(api.get("/v1/trips", "nakato", params=params), 422)
+
+tests/test_trips.py:307: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+r = <Response [200]>, status = 422, code = None
+
+    def assert_error(r, status, code=None):
+>       assert r.status_code == status, f"expected {status} got {r.status_code}: {r.text[:300]}"
+E       AssertionError: expected 422 got 200: {"data":[],"page":1,"page_size":10,"total":0}
+
+qa_api.py:63: AssertionError
+_____________________ test_schedule_valid_returned_in_utc ______________________
+
+api = <Api key=***>
+
+    @pytest.mark.positive
+    def test_schedule_valid_returned_in_utc(api):
+        est = api.new_estimate()
+        when = (utcnow() + timedelta(hours=2)).astimezone(__import__("datetime").timezone(timedelta(hours=3)))
+        r = api.book("nakato", est["id"], scheduled_for=_iso(when))
+        assert r.status_code == 201, r.text
+        got = r.json()["scheduled_for"]
+        assert parse_dt(got).utcoffset() == timedelta(0), f"not UTC: {got}"
+>       assert abs((parse_dt(got) - when).total_seconds()) < 1, "instant changed during conversion"
+E       AssertionError: instant changed during conversion
+E       assert 10799.999325 < 1
+E        +  where 10799.999325 = abs(10799.999325)
+E        +    where 10799.999325 = <built-in method total_seconds of datetime.timedelta object at 0x7eff5c329920>()
+E        +      where <built-in method total_seconds of datetime.timedelta object at 0x7eff5c329920> = (datetime.datetime(2026, 10, 22, 4, 41, 23, 242000, tzinfo=datetime.timezone.utc) - datetime.datetime(2026, 10, 22, 4, 41, 23, 242675, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800)))).total_seconds
+E        +        where datetime.datetime(2026, 10, 22, 4, 41, 23, 242000, tzinfo=datetime.timezone.utc) = parse_dt('2026-10-22T04:41:23.242Z')
+
+tests/test_trips.py:343: AssertionError
+_____________________ test_rating_before_completion[None] ______________________
+
+api = <Api key=***>, upto = None
+
+    @pytest.mark.negative
+    @pytest.mark.state
+    @pytest.mark.parametrize("upto", [None, "accept", "arrive", "start"])
+    def test_rating_before_completion(api, upto):
+        t = api.new_trip()
+        if upto:
+            api.drive(t["id"], upto=upto)
+>       assert_error(api.post(f"/v1/trips/{t['id']}/rating", "nakato", json={"stars": 5}), 409, "TRIP_NOT_COMPLETED")
+
+tests/test_trips.py:431: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+r = <Response [201]>, status = 409, code = 'TRIP_NOT_COMPLETED'
+
+    def assert_error(r, status, code=None):
+>       assert r.status_code == status, f"expected {status} got {r.status_code}: {r.text[:300]}"
+E       AssertionError: expected 409 got 201: {"trip_id":"trp_3EC7DC5FAEAF","stars":5,"comment":null,"created_at":"2026-10-21T23:42:54.356Z"}
+
+qa_api.py:63: AssertionError
+____________________ test_rating_before_completion[accept] _____________________
+
+api = <Api key=***>, upto = 'accept'
+
+    @pytest.mark.negative
+    @pytest.mark.state
+    @pytest.mark.parametrize("upto", [None, "accept", "arrive", "start"])
+    def test_rating_before_completion(api, upto):
+        t = api.new_trip()
+        if upto:
+            api.drive(t["id"], upto=upto)
+>       assert_error(api.post(f"/v1/trips/{t['id']}/rating", "nakato", json={"stars": 5}), 409, "TRIP_NOT_COMPLETED")
+
+tests/test_trips.py:431: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+r = <Response [201]>, status = 409, code = 'TRIP_NOT_COMPLETED'
+
+    def assert_error(r, status, code=None):
+>       assert r.status_code == status, f"expected {status} got {r.status_code}: {r.text[:300]}"
+E       AssertionError: expected 409 got 201: {"trip_id":"trp_8F3E221A7D94","stars":5,"comment":null,"created_at":"2026-10-21T23:42:57.741Z"}
+
+qa_api.py:63: AssertionError
+____________________ test_rating_before_completion[arrive] _____________________
+
+api = <Api key=***>, upto = 'arrive'
+
+    @pytest.mark.negative
+    @pytest.mark.state
+    @pytest.mark.parametrize("upto", [None, "accept", "arrive", "start"])
+    def test_rating_before_completion(api, upto):
+        t = api.new_trip()
+        if upto:
+            api.drive(t["id"], upto=upto)
+>       assert_error(api.post(f"/v1/trips/{t['id']}/rating", "nakato", json={"stars": 5}), 409, "TRIP_NOT_COMPLETED")
+
+tests/test_trips.py:431: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+r = <Response [201]>, status = 409, code = 'TRIP_NOT_COMPLETED'
+
+    def assert_error(r, status, code=None):
+>       assert r.status_code == status, f"expected {status} got {r.status_code}: {r.text[:300]}"
+E       AssertionError: expected 409 got 201: {"trip_id":"trp_71FCF9F84EF4","stars":5,"comment":null,"created_at":"2026-10-21T23:43:01.655Z"}
+
+qa_api.py:63: AssertionError
+_____________________ test_rating_before_completion[start] _____________________
+
+api = <Api key=***>, upto = 'start'
+
+    @pytest.mark.negative
+    @pytest.mark.state
+    @pytest.mark.parametrize("upto", [None, "accept", "arrive", "start"])
+    def test_rating_before_completion(api, upto):
+        t = api.new_trip()
+        if upto:
+            api.drive(t["id"], upto=upto)
+>       assert_error(api.post(f"/v1/trips/{t['id']}/rating", "nakato", json={"stars": 5}), 409, "TRIP_NOT_COMPLETED")
+
+tests/test_trips.py:431: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+r = <Response [201]>, status = 409, code = 'TRIP_NOT_COMPLETED'
+
+    def assert_error(r, status, code=None):
+>       assert r.status_code == status, f"expected {status} got {r.status_code}: {r.text[:300]}"
+E       AssertionError: expected 409 got 201: {"trip_id":"trp_0AB549162C55","stars":5,"comment":null,"created_at":"2026-10-21T23:43:06.074Z"}
+
+qa_api.py:63: AssertionError
+__________________________ test_rating_cancelled_trip __________________________
+
+api = <Api key=***>
+
+    @pytest.mark.negative
+    @pytest.mark.state
+    def test_rating_cancelled_trip(api):
+        t = api.new_trip()
+        api.post(f"/v1/trips/{t['id']}/cancel", "nakato")
+>       assert_error(api.post(f"/v1/trips/{t['id']}/rating", "nakato", json={"stars": 5}), 409, "TRIP_NOT_COMPLETED")
+
+tests/test_trips.py:439: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+r = <Response [201]>, status = 409, code = 'TRIP_NOT_COMPLETED'
+
+    def assert_error(r, status, code=None):
+>       assert r.status_code == status, f"expected {status} got {r.status_code}: {r.text[:300]}"
+E       AssertionError: expected 409 got 201: {"trip_id":"trp_3FB6EBE6C2A0","stars":5,"comment":null,"created_at":"2026-10-21T23:43:08.503Z"}
+
+qa_api.py:63: AssertionError
+________________________ test_topup_replay_credits_once ________________________
+
+api = <Api key=***>
+
+    @pytest.mark.positive
+    @pytest.mark.state
+    def test_topup_replay_credits_once(api):
+        key = str(uuid.uuid4())
+        r1 = api.topup("okello", idem=key, **VALID)
+        r2 = api.topup("okello", idem=key, **VALID)
+        assert (r1.status_code, r2.status_code) == (201, 200), (r1.text, r2.text)
+        assert r1.json()["id"] == r2.json()["id"]
+        assert r2.json()["wallet_balance_after"] == r1.json()["wallet_balance_after"]
+>       assert api.balance("okello") == 13000, "wallet credited more than once"
+E       AssertionError: wallet credited more than once
+E       assert 23000 == 13000
+E        +  where 23000 = balance('okello')
+E        +    where balance = <Api key=***>.balance
+
+tests/test_wallet.py:39: AssertionError
+______________________ test_parallel_replays_credit_once _______________________
+
+api = <Api key=***>
+
+    @pytest.mark.positive
+    @pytest.mark.state
+    @pytest.mark.concurrency
+    def test_parallel_replays_credit_once(api):
+        key = str(uuid.uuid4())
+        rs = run_parallel(lambda i: api.topup("okello", idem=key, **VALID), 10)
+        codes = sorted(r.status_code for r in rs)
+>       assert codes.count(201) == 1 and codes.count(200) == 9, codes
+E       AssertionError: [200, 200, 200, 200, 200, 200, ...]
+E       assert (2 == 1)
+E        +  where 2 = <built-in method count of list object at 0x7eff5c2502c0>(201)
+E        +    where <built-in method count of list object at 0x7eff5c2502c0> = [200, 200, 200, 200, 200, 200, ...].count
+
+tests/test_wallet.py:183: AssertionError
+- generated xml file: /workspace/cwr-tasks/safeboda/part2_api_testing/reports/junit.xml -
+- Generated html report: file:///workspace/cwr-tasks/safeboda/part2_api_testing/reports/report.html -
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_estimates.py:184: slow test; set RUN_SLOW=1
+ERROR tests/test_trips.py::test_estimate_is_single_use - qa_api.SandboxUnavai...
+FAILED tests/test_auth_contract.py::test_malformed_body_is_client_error[array-/v1/fare-estimates]
+FAILED tests/test_auth_contract.py::test_malformed_body_is_client_error[null-/v1/fare-estimates]
+FAILED tests/test_auth_contract.py::test_malformed_body_is_client_error[null-/v1/trips]
+FAILED tests/test_auth_contract.py::test_malformed_body_is_client_error[null-/v1/wallet/top-ups]
+FAILED tests/test_auth_contract.py::test_malformed_body_is_client_error[null-/v1/support/chat]
+FAILED tests/test_auth_contract.py::test_malformed_body_is_client_error[string-/v1/fare-estimates]
+FAILED tests/test_auth_contract.py::test_malformed_body_is_client_error[number-/v1/fare-estimates]
+FAILED tests/test_concurrency.py::test_two_drivers_accept_same_trip_exactly_one_wins
+FAILED tests/test_concurrency.py::test_same_estimate_booked_in_parallel_creates_one_trip
+FAILED tests/test_concurrency.py::test_same_idempotency_key_booked_in_parallel_creates_one_trip
+FAILED tests/test_concurrency.py::test_parallel_complete_charges_wallet_once
+FAILED tests/test_concurrency.py::test_two_wallet_bookings_cannot_overdraw_on_completion
+FAILED tests/test_driver_and_flows.py::test_full_car_journey_with_car_driver
+FAILED tests/test_driver_and_flows.py::test_available_trips_filtered_by_service
+FAILED tests/test_driver_and_flows.py::test_service_mismatch[ssemanda-car] - ...
+FAILED tests/test_driver_and_flows.py::test_service_mismatch[achieng-car] - q...
+FAILED tests/test_estimates.py::test_car_estimate_works - qa_api.SchemaMismat...
+FAILED tests/test_estimates.py::test_fare_never_negative_on_very_short_trip[SENDFREE-send]
+FAILED tests/test_estimates.py::test_missing_required_field[pickup] - qa_api....
+FAILED tests/test_estimates.py::test_missing_required_field[dropoff] - qa_api...
+FAILED tests/test_estimates.py::test_invalid_point[pickup-label121] - Asserti...
+FAILED tests/test_estimates.py::test_invalid_point[dropoff-lat91] - qa_api.Sc...
+FAILED tests/test_estimates.py::test_invalid_point[dropoff-lat-91] - qa_api.S...
+FAILED tests/test_estimates.py::test_invalid_point[dropoff-lng181] - qa_api.S...
+FAILED tests/test_estimates.py::test_invalid_point[dropoff-lng-181] - qa_api....
+FAILED tests/test_support_contract.py::test_chat_other_riders_trip_is_404 - A...
+FAILED tests/test_trips.py::test_book_cash_trip - qa_api.SandboxUnavailable: ...
+FAILED tests/test_trips.py::test_notes_length[201-False] - AssertionError: {"...
+FAILED tests/test_trips.py::test_cancel_completed - AssertionError: expected ...
+FAILED tests/test_trips.py::test_cancel_reason_wrong_type[int] - AssertionErr...
+FAILED tests/test_trips.py::test_cancel_reason_wrong_type[list] - AssertionEr...
+FAILED tests/test_trips.py::test_cancel_reason_wrong_type[object] - Assertion...
+FAILED tests/test_trips.py::test_get_trip_isolation - AssertionError: expecte...
+FAILED tests/test_trips.py::test_list_pagination - assert (3, 1, 2, 2, 0) == ...
+FAILED tests/test_trips.py::test_list_invalid_params[{'status': 'bogus'}] - A...
+FAILED tests/test_trips.py::test_list_invalid_params[{'status': 'REQUESTED'}]
+FAILED tests/test_trips.py::test_schedule_valid_returned_in_utc - AssertionEr...
+FAILED tests/test_trips.py::test_rating_before_completion[None] - AssertionEr...
+FAILED tests/test_trips.py::test_rating_before_completion[accept] - Assertion...
+FAILED tests/test_trips.py::test_rating_before_completion[arrive] - Assertion...
+FAILED tests/test_trips.py::test_rating_before_completion[start] - AssertionE...
+FAILED tests/test_trips.py::test_rating_cancelled_trip - AssertionError: expe...
+FAILED tests/test_wallet.py::test_topup_replay_credits_once - AssertionError:...
+FAILED tests/test_wallet.py::test_parallel_replays_credit_once - AssertionErr...
+======= 44 failed, 325 passed, 1 skipped, 1 error in 1039.17s (0:17:19) ========
